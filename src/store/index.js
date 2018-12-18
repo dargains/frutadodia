@@ -7,6 +7,8 @@ import mutations from './mutations';
 
 const state = {
   dataFetched: false,
+  fruitsFetched: false,
+  daysFetched: false,
   database: null,
   fruits: [],
   days: []

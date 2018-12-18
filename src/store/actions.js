@@ -3,8 +3,8 @@ import 'firebase/app';
 import 'firebase/firestore';
 
 export default {
-  connectToDatabase({state, commit}) {
-    return new Promise((resolve, reject) => {
+  connectToDatabase({commit}) {
+    return new Promise(resolve => {
       var config = {
         apiKey: "AIzaSyDxbnToX2rRUvhnTrReiiQ9nE7lAtYwwc8",
         authDomain: "fruta-do-dia.firebaseapp.com",
@@ -21,24 +21,24 @@ export default {
       resolve();
     });
   },
-  getFruits({state}) {
+  getFruits({state, commit}) {
     state.database.collection('fruits').get().then(list => {
       const fruits = [];
       list.forEach(item => {
         fruits.push(item.data());
       });
-      state.fruits.push(...fruits);
-      state.dataFetched = true;
+      commit('writeFruits', fruits);
+      commit('dataFetched');
     });
   },
-  getDays({state}) {
+  getDays({state, commit}) {
     state.database.collection('days').get().then(list => {
       const days = [];
       list.forEach(item => {
         days.push(item.data());
       });
-      state.days.push(...days);
-      state.dataFetched = true;
+      commit('writeDays', days);
+      commit('dataFetched');
     });
   },
   submitFruit({state}, token) {
