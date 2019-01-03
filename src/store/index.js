@@ -6,10 +6,19 @@ import getters from './getters';
 import mutations from './mutations';
 
 const state = {
+  config: {
+    apiKey: "AIzaSyDxbnToX2rRUvhnTrReiiQ9nE7lAtYwwc8",
+    authDomain: "fruta-do-dia.firebaseapp.com",
+    databaseURL: "https://fruta-do-dia.firebaseio.com",
+    projectId: "fruta-do-dia",
+    storageBucket: "fruta-do-dia.appspot.com",
+    messagingSenderId: "220283332867"
+  },
   dataFetched: false,
   fruitsFetched: false,
   daysFetched: false,
   database: null,
+  storage: null,
   fruits: [],
   days: []
 }

@@ -9,14 +9,18 @@ export default {
     if (!state.dataFetched || !state.fruitsFetched || !state.daysFetched) return;
     const newDate = new Date();
     const today = state.days.find(day => toDateTime(day.day.seconds).getDate() === newDate.getDate());
-    return today ? state.fruits.find(fruit => fruit.name === today.name) : {name: 'nenhuma', image:'img/none.png'}
+    const fruit = today ? state.fruits.find(fruit => fruit.name === today.name) : {name: 'nenhuma', image:'img/nenhuma.png'}
+    state.storage.ref(`fruits/${fruit.name}.png`).getDownloadURL().then(url => {
+      fruit.image = url;
+    })
+    return fruit;
   },
-  fruitYesterday(state) {
-    if (!state.dataFetched || !state.fruitsFetched || !state.daysFetched) return;
-    const newDate = new Date();
-    const today = state.days.find(day => toDateTime(day.day.seconds).getDate() === newDate.getDate() - 1);
-    return state.fruits.find(fruit => fruit.name === today.name)
-  },
+  // fruitYesterday(state) {
+  //   if (!state.dataFetched || !state.fruitsFetched || !state.daysFetched) return;
+  //   const newDate = new Date();
+  //   const today = state.days.find(day => toDateTime(day.day.seconds).getDate() === newDate.getDate() - 1);
+  //   return state.fruits.find(fruit => fruit.name === today.name)
+  // },
   fruitNames(state) {
     if (!state.dataFetched || !state.fruitsFetched || !state.daysFetched) return;
     const list = []

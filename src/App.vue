@@ -14,6 +14,7 @@ export default {
   created() {
     this.$store.dispatch('connectToDatabase')
     .then(() => {
+      this.$store.dispatch('connectToStorage');
       this.$store.dispatch('getFruits');
       this.$store.dispatch('getDays');
     })

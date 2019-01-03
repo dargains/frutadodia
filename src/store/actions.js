@@ -1,23 +1,23 @@
 import firebase from 'firebase/app';
 import 'firebase/app';
 import 'firebase/firestore';
+import 'firebase/storage';
 
 export default {
-  connectToDatabase({commit}) {
+  connectToDatabase({state, commit}) {
     return new Promise(resolve => {
-      var config = {
-        apiKey: "AIzaSyDxbnToX2rRUvhnTrReiiQ9nE7lAtYwwc8",
-        authDomain: "fruta-do-dia.firebaseapp.com",
-        databaseURL: "https://fruta-do-dia.firebaseio.com",
-        projectId: "fruta-do-dia",
-        storageBucket: "fruta-do-dia.appspot.com",
-        messagingSenderId: "220283332867"
-      };
-      firebase.initializeApp(config);
+      firebase.initializeApp(state.config);
       var database = firebase.firestore();
       var settings = { timestampsInSnapshots: true };
       database.settings(settings);
       commit('writeDatabase', database);
+      resolve();
+    });
+  },
+  connectToStorage({commit}) {
+    return new Promise(resolve => {
+      var storage = firebase.storage();
+      commit('writeStorage', storage);
       resolve();
     });
   },
@@ -49,7 +49,7 @@ export default {
     }
     state.database.collection("days").add(data);
   },
-  likeDislike({state}, token) {
+  rateFruit({state}, token) {
     let doc = {};
     let id = "";
     state.database.collection('fruits').where('name', '==', token.name).get().then(list => {

@@ -2,6 +2,9 @@ export default {
   writeDatabase(state, token) {
     state.database = token;
   },
+  writeStorage(state, token) {
+    state.storage = token;
+  },
   dataFetched(state) {
     state.dataFetched = true;
   },
