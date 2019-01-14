@@ -1,70 +1,27 @@
 <template>
-  <v-layout class="admin" text-xs-center wrap align-center justify-center row fill-height>
-
-    <v-dialog v-model="dialog" persistent max-width="290">
-      <v-card>
-        <v-card-title class="headline">Atenção!</v-card-title>
-        <v-card-text>Apenas a Marta pode aceder este ambiente. Se não és a Marta BAZA!</v-card-text>
-        <v-card-text>Se és a Marta coloca aqui a tua pass</v-card-text>
-        <v-form ref="entry" v-model="validP">
-          <v-flex xs10 style="margin: 0 auto;">
-            <v-text-field label="Password" required :rules="passRules"></v-text-field>
-          </v-flex>
-        </v-form>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="" flat  to="/">Sair</v-btn>
-          <v-btn color="primary" flat :disabled="!validP" @click="submitPass">Entrar</v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
-
-    <v-flex xs12 sm8 md4>
-      <v-form ref="form" v-model="valid">
-        <p class="subheading mb-1 mt-2">Escolha a Fruta do Dia</p>
-        <v-combobox
-          v-model="select"
-          :items="fruits"
-          label="Fruta do dia"
-           required :rules="selectRules"
-        ></v-combobox>
-
-        <v-btn :disabled="!valid" @click="submit" color="primary">
-          Enviar
-        </v-btn>
-        <v-btn to="/">
-          Voltar
-        </v-btn>
-        <v-snackbar v-model="snackbar" :timeout="timeout" right>
-          Publicado!
-          <v-btn color="pink" flat @click="snackbar = false">
-            fechar
-          </v-btn>
-        </v-snackbar>
-      </v-form>
-    </v-flex>
-  </v-layout>
+  <section class="admin">
+    <ul class="admin__list">
+      <li class="admin__item" v-for="fruit in fruits" :key="fruit">
+        <p>{{fruit}}</p>
+        <div class="toggle">
+          <input type="checkbox" :id="fruit">
+          <label :for="fruit" @click="toggleFruit"></label>
+        </div>
+      </li>
+    </ul>
+    <div class="admin__buttons">
+      <button class="back" @click="$router.push('/')">Voltar</button>
+      <button class="submit" @click="submit">Submeter</button>
+    </div>
+  </section>
 </template>
 
 <script>
   export default {
     name: 'Admin',
-    data () {
+    data() {
       return {
-        dialog: true,
-        valid: true,
-        validP: true,
-        snackbar: false,
-        timeout: 3000,
-        select: '',
-        items: [],
-        selectRules: [
-          v => !!v || 'Escolha obrigatória'
-        ],
-        passRules: [
-          v => !!v || 'Password obrigatória',
-          v => /^(dargainseomaior)$/g.test(v) || 'Password errada'
-        ]
+        list: []
       }
     },
     computed: {
@@ -74,17 +31,106 @@
     },
     methods: {
       submit () {
-        if (!!this.select && this.$refs.form.validate()) {
-          this.$store.dispatch('submitFruit', this.select);
-          this.snackbar = true;
-          setTimeout(() => {
-            this.$refs.form.reset()
-          }, 3000)
-        }
+        this.$store.dispatch('submitFruit', this.list).then(() => {
+          alert('Fruta do Dia submetida!')
+        });
       },
-      submitPass() {
-        if (this.$refs.entry.validate()) this.dialog = false;
+      toggleFruit(event) {
+        const isChecking = !event.currentTarget.previousElementSibling.checked;
+        const selectedFruit = event.currentTarget.getAttribute('for');
+        if (isChecking) {
+          if (this.list.length === 2) event.preventDefault();
+          else this.list.push(selectedFruit);
+        } else this.list.splice(this.list.indexOf(selectedFruit), 1);
       }
     }
   }
 </script>
+
+<style lang="scss">
+.admin {
+  &__list {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    li + li {
+      border-top: 1px solid lightgrey;
+    }
+  }
+  &__item {
+    width: 100%;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 80px;
+    p {
+      &:before {
+        content: attr(data-icon);
+        margin-right: 10px;
+        width: 40px;
+        height: 60px;
+        display: inline-block;
+        vertical-align: middle;
+        background-color: lightgrey;
+      }
+    }
+  }
+  &__buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    button {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 80px;
+      color: white;
+      &.back {
+        background-color: var(--red);
+      }
+      &.submit {
+        background-color: var(--green);
+      }
+    }
+  }
+}
+.toggle {
+	label {
+		width: 47px;
+		height: 27px;
+		border-radius: 14px;
+		background-color: lightgrey;
+		display: inline-block;
+		vertical-align: middle;
+		margin-left: 5px;
+		transition: background-color .2s ease-in;
+		cursor: pointer;
+		position: relative;
+		&:after {
+			content: '';
+			display: block;
+			position: absolute;
+			top: 3px;
+			left: 3px;
+			width: 21px;
+			height: 21px;
+			border-radius: 12px;
+			background-color: white;
+			box-shadow: 0px 2px 4px 0 rgba(gray, 0.35);
+			transition: left .1s ease-in;
+		}
+	}
+	input:checked ~ label {
+    background-color: var(--green);
+    &:after {
+      left: 23px;
+    }
+	}
+	input {
+		display: none;
+	}
+}
+</style>

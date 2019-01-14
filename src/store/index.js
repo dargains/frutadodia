@@ -15,10 +15,9 @@ const state = {
     messagingSenderId: "220283332867"
   },
   dataFetched: false,
-  fruitsFetched: false,
-  daysFetched: false,
   database: null,
   storage: null,
+  fruitOfTheDay: [],
   fruits: [],
   days: []
 }

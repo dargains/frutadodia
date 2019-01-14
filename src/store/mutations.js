@@ -5,15 +5,16 @@ export default {
   writeStorage(state, token) {
     state.storage = token;
   },
-  dataFetched(state) {
+  allFetched(state) {
     state.dataFetched = true;
   },
   writeFruits(state, token) {
     state.fruits.push(...token);
-    state.fruitsFetched = true;
   },
   writeDays(state, token) {
     state.days.push(...token);
-    state.daysFetched = true;
+  },
+  writeFruitOfTheDay(state, token) {
+    state.fruitOfTheDay.push(...token);
   }
 }

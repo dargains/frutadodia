@@ -3,6 +3,12 @@ import 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/storage';
 
+const toDateTime = secs => {
+  var t = new Date(1970, 0, 1);
+  t.setSeconds(secs);
+  return t;
+}
+
 export default {
   connectToDatabase({state, commit}) {
     return new Promise(resolve => {
@@ -22,23 +28,48 @@ export default {
     });
   },
   getFruits({state, commit}) {
-    state.database.collection('fruits').get().then(list => {
-      const fruits = [];
-      list.forEach(item => {
-        fruits.push(item.data());
+    return new Promise(function(resolve, reject) {
+      state.database.collection('fruits').get().then(list => {
+        const fruits = [];
+        list.forEach(item => {
+          fruits.push(item.data());
+        });
+        commit('writeFruits', fruits);
+        resolve();
       });
-      commit('writeFruits', fruits);
-      commit('dataFetched');
     });
   },
   getDays({state, commit}) {
-    state.database.collection('days').get().then(list => {
-      const days = [];
-      list.forEach(item => {
-        days.push(item.data());
+    return new Promise(function(resolve, reject) {
+      state.database.collection('days').get().then(list => {
+        const days = [];
+        list.forEach(item => {
+          days.push(item.data());
+        });
+        commit('writeDays', days);
+        resolve();
       });
-      commit('writeDays', days);
-      commit('dataFetched');
+    });
+  },
+  getFruitOfTheDay({state,commit}) {
+    var fruits = [];
+    const newDate = new Date();
+    const today = state.days.find(day => toDateTime(day.day.seconds).getDate() === newDate.getDate());
+    if (today) {
+      today.name.forEach(element => {
+        fruits.push(state.fruits.find(fruit => fruit.name === element))
+      });
+    } else fruits.push({name: 'Nenhuma',image: ''});
+    new Promise(function(resolve, reject) {
+      fruits.forEach(element => {
+        state.storage.ref(`fruits/${element.name}.png`).getDownloadURL().then(url => {
+          element.image = url;
+        });
+      });
+      resolve();
+    }).then(() => {
+      commit('writeFruitOfTheDay', fruits);
+      commit('allFetched');
     });
   },
   submitFruit({state}, token) {
@@ -47,18 +78,11 @@ export default {
       day,
       name: token
     }
-    state.database.collection("days").add(data);
-  },
-  rateFruit({state}, token) {
-    let doc = {};
-    let id = "";
-    state.database.collection('fruits').where('name', '==', token.name).get().then(list => {
-      list.forEach(item => {
-        id = item.id;
-        doc = item.data();
-      });
-      doc[token.type]++;
-      return state.database.collection('fruits').doc(id).set(doc)
+    return new Promise(function(resolve, reject) {
+      state.database.collection("days").add(data).then(response => {
+        if (response.id) resolve();
+        else reject();
+      })
     });
-  },
+  }
 }

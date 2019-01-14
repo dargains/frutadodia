@@ -3,6 +3,7 @@ import './plugins/vuetify'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import './assets/reset.css'
 // import './registerServiceWorker'
 
 Vue.config.productionTip = false
