@@ -1,11 +1,11 @@
 <template>
   <section class="admin">
     <ul class="admin__list">
-      <li class="admin__item" v-for="fruit in fruits" :key="fruit">
+      <li class="admin__item" v-for="fruit in fruits" :key="fruit.name">
         <p>{{fruit.name}}</p>
         <div class="toggle">
-          <input type="checkbox" :id="fruit">
-          <label :for="fruit" @click="toggleFruit"></label>
+          <input type="checkbox" :id="fruit.name">
+          <label :for="fruit.name" @click="toggleFruit"></label>
         </div>
       </li>
     </ul>
@@ -49,11 +49,13 @@
 
 <style lang="scss">
 .admin {
+  height: auto;
   &__list {
     display: flex;
     align-items: center;
     justify-content: flex-start;
     flex-direction: column;
+    padding-bottom: 80px;
     li + li {
       border-top: 1px solid lightgrey;
     }
@@ -81,6 +83,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
     button {
       flex: 1;
       display: flex;
@@ -88,6 +93,7 @@
       justify-content: center;
       height: 80px;
       color: white;
+      border: 0;
       &.back {
         background-color: var(--red);
       }

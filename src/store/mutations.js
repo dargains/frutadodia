@@ -16,5 +16,8 @@ export default {
   },
   writeFruitOfTheDay(state, token) {
     state.fruitOfTheDay.push(...token);
+  },
+  showNoFruitToday(state) {
+    state.days = [{day:15, name:['Nenhuma']}]
   }
 }

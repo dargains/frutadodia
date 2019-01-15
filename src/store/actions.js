@@ -24,7 +24,6 @@ export default {
     return new Promise(resolve => {
       var storage = firebase.storage();
       commit('writeStorage', storage);
-      console.log('storage');
       resolve();
     });
   },
@@ -36,29 +35,34 @@ export default {
           fruits.push(item.data());
         });
         commit('writeFruits', fruits)
-        console.log('fruits');
         resolve();
       });
     });
   },
   getDays({state, commit}) {
     return new Promise(function(resolve, reject) {
-      state.database.collection('days').get().then(list => {
-        const days = [];
-        list.forEach(item => {
-          days.push(item.data());
-          console.log('day');
-        });
-        commit('writeDays', days);
-        console.log('days');
-        resolve();
-      });
+      console.log('days begin');
+      const now = new Date();
+      const today = now.getDate();
+      state.database.collection('days').where('day', '==', today).get().then(list => {
+        if (list.empty) reject();
+        else {
+          const days = [];
+          console.log('gotDays');
+          list.forEach(item => {
+            days.push(item.data());
+          });
+          commit('writeDays', days);
+          console.log('days');
+          resolve();
+        }
+      })
     });
   },
   getFruitOfTheDay({state,commit}) {
     var fruits = [];
     const newDate = new Date();
-    const today = state.days.find(day => toDateTime(day.day.seconds).getDate() === newDate.getDate());
+    const today = state.days.find(day => day.day === newDate.getDate());
     if (today) {
       today.name.forEach(element => {
         fruits.push(state.fruits.find(fruit => fruit.name === element))
@@ -83,7 +87,7 @@ export default {
   submitFruit({state}, token) {
     const day = new Date();
     const data = {
-      day,
+      day: day.getDate(),
       name: token
     }
     return new Promise(function(resolve, reject) {
