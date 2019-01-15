@@ -6,7 +6,7 @@ export default {
     state.storage = token;
   },
   allFetched(state) {
-    state.dataFetched = true;
+    state.allFetched = true;
   },
   writeFruits(state, token) {
     state.fruits.push(...token);

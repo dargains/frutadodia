@@ -24,6 +24,7 @@ export default {
     return new Promise(resolve => {
       var storage = firebase.storage();
       commit('writeStorage', storage);
+      console.log('storage');
       resolve();
     });
   },
@@ -34,7 +35,8 @@ export default {
         list.forEach(item => {
           fruits.push(item.data());
         });
-        commit('writeFruits', fruits);
+        commit('writeFruits', fruits)
+        console.log('fruits');
         resolve();
       });
     });
@@ -45,8 +47,10 @@ export default {
         const days = [];
         list.forEach(item => {
           days.push(item.data());
+          console.log('day');
         });
         commit('writeDays', days);
+        console.log('days');
         resolve();
       });
     });
@@ -61,12 +65,16 @@ export default {
       });
     } else fruits.push({name: 'Nenhuma',image: ''});
     new Promise(function(resolve, reject) {
+      const images = [];
       fruits.forEach(element => {
-        state.storage.ref(`fruits/${element.name}.png`).getDownloadURL().then(url => {
-          element.image = url;
-        });
+        images.push(state.storage.ref(`fruits/${element.name}.png`).getDownloadURL())
       });
-      resolve();
+      Promise.all(images).then(imageResults => {
+        imageResults.forEach((image, i) => {
+          fruits[i].image = image
+        });
+        resolve();
+      });
     }).then(() => {
       commit('writeFruitOfTheDay', fruits);
       commit('allFetched');

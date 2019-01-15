@@ -2,7 +2,7 @@
   <section class="admin">
     <ul class="admin__list">
       <li class="admin__item" v-for="fruit in fruits" :key="fruit">
-        <p>{{fruit}}</p>
+        <p>{{fruit.name}}</p>
         <div class="toggle">
           <input type="checkbox" :id="fruit">
           <label :for="fruit" @click="toggleFruit"></label>
@@ -26,7 +26,7 @@
     },
     computed: {
       fruits() {
-        return this.$store.getters.fruitNames;
+        return this.$store.state.fruits;
       }
     },
     methods: {
