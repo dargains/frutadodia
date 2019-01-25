@@ -45,7 +45,7 @@ export default {
       const now = new Date();
       const today = now.getDate();
       state.database.collection('days').where('day', '==', today).get().then(list => {
-        if (list.empty) reject();
+        if (list.empty) reject('nothing today');
         else {
           const days = [];
           console.log('gotDays');
@@ -53,7 +53,7 @@ export default {
             days.push(item.data());
           });
           commit('writeDays', days);
-          console.log('days');
+          console.log('days end');
           resolve();
         }
       })
@@ -67,7 +67,7 @@ export default {
       today.name.forEach(element => {
         fruits.push(state.fruits.find(fruit => fruit.name === element))
       });
-    } else fruits.push({name: 'Nenhuma',image: ''});
+    }
     new Promise(function(resolve, reject) {
       const images = [];
       fruits.forEach(element => {

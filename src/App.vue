@@ -1,12 +1,12 @@
 <template>
-  <main ref="main">
+  <div ref="main">
     <transition name="fade">
       <Loading v-if="!allFetched"/>
     </transition>
     <transition name="fade">
       <router-view />
     </transition>
-  </main>
+  </div>
 </template>
 
 <script>
@@ -28,28 +28,31 @@ export default {
         this.$store.dispatch('connectToStorage'),
         this.$store.dispatch('getFruits'),
         this.$store.dispatch('getDays')
-      ]).then(values => {
+      ]).then(() => {
         this.$store.dispatch('getFruitOfTheDay');
       }).catch(error => {
+        console.log(error);
         this.$store.commit('showNoFruitToday')
         this.$store.dispatch('getFruitOfTheDay');
       })
     })
   },
   mounted() {
-    this.$refs.main.style.height = window.innerHeight + 'px';
+    // this.$refs.main.style.height = window.innerHeight + 'px';
   }
 }
 </script>
 <style>
 :root {
-  --green: #4cd964;
-  --red: #dd2222;
+  --green: #36d174;
+  --red: #ef5350;
+  --white: #ffffff;
+  --black: #363d46;
 }
 body {
-  font-family: 'Josefin Slab';
+  font-family: 'Josefin Slab', serif;
   font-weight: 700;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 .fade-enter-active,

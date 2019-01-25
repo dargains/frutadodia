@@ -10,8 +10,8 @@
       </li>
     </ul>
     <div class="admin__buttons">
-      <button class="back" @click="$router.push('/')">Voltar</button>
-      <button class="submit" @click="submit">Submeter</button>
+      <button class="back" @click="$router.push('/')"><img src="../assets/negative.svg" alt=""></button>
+      <button class="submit" @click="submit"><img src="../assets/positive.svg" alt=""></button>
     </div>
   </section>
 </template>
@@ -87,18 +87,23 @@
     bottom: 0;
     width: 100%;
     button {
-      flex: 1;
       display: flex;
       align-items: center;
       justify-content: center;
       height: 80px;
       color: white;
       border: 0;
+      padding: 0;
+      img {
+        max-width: 40px;
+      }
       &.back {
         background-color: var(--red);
+        flex: 1;
       }
       &.submit {
         background-color: var(--green);
+        flex: 2;
       }
     }
   }

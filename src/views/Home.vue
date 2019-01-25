@@ -1,19 +1,27 @@
 <template>
-<section class="main">
-  <article class="main__fruit" v-for="fruit in fruitOfTheDay" :style="{backgroundImage: `radial-gradient(circle at 50% 50%, ${fruit.colors[0]}, ${fruit.colors[1]})`}" :key="fruit.name">
-    <figure class="main__fruitImage">
-      <img :src="fruit.image" :alt="fruit.name">
-    </figure>
-    <p class="main__fruitName">{{fruit.name}}</p>
-  </article>
-  <div class="main__admin">
-    <router-link :to="{ name: 'admin', params: {} }">Fruta do dia</router-link>
-  </div>
-</section>
+  <main>
+    <section class="main" v-if="fruitOfTheDay.length">
+      <article class="main__fruit" v-for="fruit in fruitOfTheDay" :style="{backgroundImage: `radial-gradient(circle at 50% 50%, ${fruit.colors[0]}, ${fruit.colors[1]})`}" :key="fruit.name">
+        <figure class="main__fruitImage">
+          <img :src="fruit.image" :alt="fruit.name">
+        </figure>
+        <p class="main__fruitName">{{fruit.name}}</p>
+      </article>
+      <div class="main__admin">
+        <router-link :to="{ name: 'admin', params: {} }">Fruta do dia</router-link>
+      </div>
+    </section>
+    <Empty v-else/>
+  </main>
 </template>
 
 <script>
+import Empty from './Empty';
+
 export default {
+  components: {
+    Empty
+  },
   computed: {
     fruitOfTheDay() {
       return this.$store.state.fruitOfTheDay;

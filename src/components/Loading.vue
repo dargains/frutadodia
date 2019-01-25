@@ -19,7 +19,8 @@ export default {
 
 <style lang="scss">
 .loading {
-  background-color: white;
+  background-color: var(--white);
+  color: var(--black);
   width: 100vw;
   height: 100vh;
   text-align: center;
