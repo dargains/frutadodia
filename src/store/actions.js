@@ -41,54 +41,57 @@ export default {
   },
   getDays({state, commit}) {
     return new Promise(function(resolve, reject) {
-      console.log('days begin');
-      const now = new Date();
-      const today = now.getDate();
-      state.database.collection('days').where('day', '==', today).get().then(list => {
-        if (list.empty) reject('nothing today');
+      state.database.collection('days').get().then(list => {
+        const today = new Date();
+        today.setHours(0,0,0,0);
+        let fruitOfTheDay = {};
+        list.forEach(day => {
+          const dayTime = toDateTime(day.data().day.seconds)
+          if (today.getTime() === dayTime.getTime()) fruitOfTheDay = day.data();
+        })
+        if (!fruitOfTheDay.day) reject('nothing today');
         else {
           const days = [];
-          console.log('gotDays');
           list.forEach(item => {
             days.push(item.data());
           });
-          commit('writeDays', days);
-          console.log('days end');
+          commit('writeFruitOfTheDay', fruitOfTheDay.fruits);
           resolve();
         }
       })
     });
   },
-  getFruitOfTheDay({state,commit}) {
-    var fruits = [];
-    const newDate = new Date();
-    const today = state.days.find(day => day.day === newDate.getDate());
-    if (today) {
-      today.name.forEach(element => {
-        fruits.push(state.fruits.find(fruit => fruit.name === element))
-      });
-    }
-    new Promise(function(resolve, reject) {
-      const images = [];
-      fruits.forEach(element => {
-        images.push(state.storage.ref(`fruits/${element.name}.png`).getDownloadURL())
-      });
-      Promise.all(images).then(imageResults => {
-        imageResults.forEach((image, i) => {
-          fruits[i].image = image
-        });
-        resolve();
-      });
-    }).then(() => {
-      commit('writeFruitOfTheDay', fruits);
-      commit('allFetched');
-    });
-  },
-  submitFruit({state}, token) {
+  // getFruitOfTheDay({state,commit}) {
+  //   var fruits = [];
+  //   const newDate = new Date();
+  //   const today = state.days.find(day => day === newDate);
+  //   if (today) {
+  //     today.fruits.forEach(element => {
+  //       fruits.push(state.fruits.find(fruit => fruit.name === element))
+  //     });
+  //   }
+  //   new Promise(function(resolve, reject) {
+  //     const images = [];
+  //     fruits.forEach(element => {
+  //       images.push(state.storage.ref(`fruits/${element.name}.png`).getDownloadURL())
+  //     });
+  //     Promise.all(images).then(imageResults => {
+  //       imageResults.forEach((image, i) => {
+  //         fruits[i].image = image
+  //       });
+  //       resolve();
+  //     });
+  //   }).then(() => {
+  //     commit('writeFruitOfTheDay', fruits);
+  //     commit('allFetched');
+  //   });
+  // },
+  submitFruit({state}, fruits) {
     const day = new Date();
+    day.setHours(0,0,0,0);
     const data = {
-      day: day.getDate(),
-      name: token
+      day,
+      fruits
     }
     return new Promise(function(resolve, reject) {
       state.database.collection("days").add(data).then(response => {

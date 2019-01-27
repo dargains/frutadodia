@@ -11,13 +11,13 @@ export default {
   writeFruits(state, token) {
     state.fruits.push(...token);
   },
-  writeDays(state, token) {
-    state.days.push(...token);
-  },
   writeFruitOfTheDay(state, token) {
-    state.fruitOfTheDay.push(...token);
-  },
-  showNoFruitToday(state) {
-    state.days = [{day:15, name:['Nenhuma']}]
+    const fruits = [];
+    token.forEach(element => {
+      let fruit = state.fruits.find(fruit => fruit.name === element);
+      fruit.image = `../assets/images/${fruit.name}.png`;
+      fruits.push(fruit)
+    });
+    state.fruitOfTheDay.push(...fruits);
   }
 }

@@ -1,15 +1,13 @@
 <template>
-  <main>
+  <main ref="main">
     <section class="main" v-if="fruitOfTheDay.length">
+      <Header />
       <article class="main__fruit" v-for="fruit in fruitOfTheDay" :style="{backgroundImage: `radial-gradient(circle at 50% 50%, ${fruit.colors[0]}, ${fruit.colors[1]})`}" :key="fruit.name">
         <figure class="main__fruitImage">
           <img :src="fruit.image" :alt="fruit.name">
         </figure>
         <p class="main__fruitName">{{fruit.name}}</p>
       </article>
-      <div class="main__admin">
-        <router-link :to="{ name: 'admin', params: {} }">Fruta do dia</router-link>
-      </div>
     </section>
     <Empty v-else/>
   </main>
@@ -17,19 +15,20 @@
 
 <script>
 import Empty from './Empty';
+import Header from '../components/Header';
 
 export default {
   components: {
-    Empty
+    Empty,
+    Header
   },
   computed: {
     fruitOfTheDay() {
       return this.$store.state.fruitOfTheDay;
     }
   },
-  created() {
-    const height = window.innerHeight;
-
+  mounted() {
+    this.$refs.main.style.height = window.innerHeight + 'px';
   },
   methods: {
 
@@ -62,26 +61,13 @@ export default {
     top: 50%;
     transform: translateY(-50%);
     text-align: left;
-    padding-right: 20px;
+    padding-right: 50px;
     line-height: 64px;
   }
   &__fruitImage {
     max-width: 300px;
     width: 80%;
     margin: 0 auto;
-  }
-  &__admin {
-    position: absolute;
-    z-index: 1;
-    top: 10px;
-    left: 30px;
-    transform: rotate(90deg);
-    transform-origin: left;
-    a {
-      color: white;
-      text-decoration: none;
-      font-size: 14px;
-    }
   }
 }
 </style>

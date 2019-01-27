@@ -1,5 +1,5 @@
 <template>
-  <div ref="main">
+  <div>
     <transition name="fade">
       <Loading v-if="!allFetched"/>
     </transition>
@@ -29,16 +29,11 @@ export default {
         this.$store.dispatch('getFruits'),
         this.$store.dispatch('getDays')
       ]).then(() => {
-        this.$store.dispatch('getFruitOfTheDay');
+        this.$store.commit('allFetched');
       }).catch(error => {
         console.log(error);
-        this.$store.commit('showNoFruitToday')
-        this.$store.dispatch('getFruitOfTheDay');
       })
     })
-  },
-  mounted() {
-    // this.$refs.main.style.height = window.innerHeight + 'px';
   }
 }
 </script>

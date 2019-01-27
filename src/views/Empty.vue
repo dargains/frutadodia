@@ -1,13 +1,19 @@
 <template lang="html">
   <section class="empty">
+    <Header />
     <h2>Está mesmo quase</h2>
     <p>Todos os dias das 9h as 11h sai a fruta do dia, excepto sábados e domingos</p>
   </section>
 </template>
 
 <script>
+import Header from '../components/Header';
+
 export default {
-  name: 'Empty'
+  name: 'Empty',
+  components: {
+    Header
+  }
 }
 </script>
 

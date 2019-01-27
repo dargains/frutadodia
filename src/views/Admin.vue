@@ -2,7 +2,12 @@
   <section class="admin">
     <ul class="admin__list">
       <li class="admin__item" v-for="fruit in fruits" :key="fruit.name">
-        <p>{{fruit.name}}</p>
+        <div>
+          <i>
+            <img :src="`../assets/icons/${fruit.name}.png`" :alt="fruit.name">
+          </i>
+          <p>{{fruit.name}}</p>
+        </div>
         <div class="toggle">
           <input type="checkbox" :id="fruit.name">
           <label :for="fruit.name" @click="toggleFruit"></label>
@@ -67,16 +72,20 @@
     align-items: center;
     justify-content: space-between;
     height: 80px;
+    i {
+      height: 60px;
+      width: 50px;
+      margin-right: 20px;
+      display: inline-flex;
+      vertical-align: middle;
+      align-items: center;
+      justify-content: center;
+    }
     p {
-      &:before {
-        content: attr(data-icon);
-        margin-right: 10px;
-        width: 40px;
-        height: 60px;
-        display: inline-block;
-        vertical-align: middle;
-        background-color: lightgrey;
-      }
+      font-family: Quicksand;
+      font-size: 16px;
+      display: inline-block;
+      vertical-align: middle;
     }
   }
   &__buttons {
