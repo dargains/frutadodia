@@ -1,3 +1,5 @@
+const getImageUrl = name => `./assets/images/${name}.png`
+
 export default {
   writeDatabase(state, token) {
     state.database = token;
@@ -15,7 +17,7 @@ export default {
     const fruits = [];
     token.forEach(element => {
       let fruit = state.fruits.find(fruit => fruit.name === element);
-      fruit.image = `../assets/images/${fruit.name}.png`;
+      fruit.image = getImageUrl(fruit.name);
       fruits.push(fruit)
     });
     state.fruitOfTheDay.push(...fruits);
