@@ -4,7 +4,7 @@
       <li class="admin__item" v-for="fruit in fruits" :key="fruit.name">
         <div>
           <i>
-            <img :src="`/img/fruits/icons/${fruit.name}.png`" :alt="fruit.name">
+            <img :src="`/img/icons/${fruit.name}.svg`" :alt="fruit.name">
           </i>
           <p>{{fruit.name}}</p>
         </div>

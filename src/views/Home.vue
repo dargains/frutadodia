@@ -4,7 +4,7 @@
       <Header />
       <article class="main__fruit" v-for="fruit in fruitOfTheDay" :style="{backgroundImage: `radial-gradient(circle at 50% 50%, ${fruit.colors[0]}, ${fruit.colors[1]})`}" :key="fruit.name">
         <figure class="main__fruitImage">
-          <img :src="`/img/fruits/images/${fruit.name}.png`" :alt="fruit.name">
+          <img :src="`/img/images/${fruit.name}.png`" :alt="fruit.name">
         </figure>
         <p class="main__fruitName">{{fruit.name}}</p>
       </article>
@@ -51,14 +51,14 @@ export default {
   }
   &__fruitName {
     position: absolute;
-    font-size: 80px;
-    left: 60%;
+    font-size: 90px;
+    left: 50%;
     word-break: break-all;
     color: white;
     top: 50%;
     transform: translateY(-50%);
     text-align: left;
-    width: 106px;
+    width: 155px;
     line-height: 64px;
   }
   &__fruitImage {
