@@ -14,6 +14,7 @@ const state = {
     storageBucket: "fruta-do-dia.appspot.com",
     messagingSenderId: "220283332867"
   },
+  logged: false,
   allFetched: false,
   database: null,
   storage: null,

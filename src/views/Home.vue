@@ -41,9 +41,9 @@ export default {
   justify-content: center;
   flex-direction: column;
   height: 100%;
+  overflow: hidden;
   &__fruit {
     width: 100%;
-    padding: 40px;
     flex: 1;
     display: flex;
     align-items: center;
@@ -58,12 +58,12 @@ export default {
     top: 50%;
     transform: translateY(-50%);
     text-align: left;
-    width: 155px;
-    line-height: 64px;
+    width: 150px;
+    line-height: 76px;
   }
   &__fruitImage {
-    max-width: 300px;
-    width: 80%;
+    // max-width: 300px;
+    width: 86%;
     margin: 0 auto;
   }
 }

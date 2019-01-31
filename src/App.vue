@@ -1,9 +1,9 @@
 <template>
   <div>
-    <transition name="fade">
-      <Loading v-if="!allFetched"/>
+    <transition name="fade" v-if="!allFetched">
+      <Loading/>
     </transition>
-    <transition name="fade">
+    <transition name="fade" v-else>
       <router-view />
     </transition>
   </div>
@@ -31,6 +31,7 @@ export default {
       ]).then(() => {
         this.$store.commit('allFetched');
       }).catch(error => {
+        this.$store.commit('allFetched');
         console.log(error);
       })
     })

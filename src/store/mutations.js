@@ -21,5 +21,8 @@ export default {
       fruits.push(fruit)
     });
     state.fruitOfTheDay.push(...fruits);
+  },
+  login(state) {
+    state.logged = true;
   }
 }
