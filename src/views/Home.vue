@@ -2,7 +2,7 @@
   <main ref="main">
     <section class="main" v-if="fruitOfTheDay.length">
       <Header />
-      <article class="main__fruit" v-for="fruit in fruitOfTheDay" :style="{backgroundImage: `radial-gradient(circle at 50% 50%, ${fruit.colors[0]}, ${fruit.colors[1]})`}" :key="fruit.name">
+      <article class="main__fruit" v-for="fruit in fruitOfTheDay" :style="{backgroundImage: `linear-gradient(135deg, ${fruit.colors[0]}, ${fruit.colors[1]})`}" :key="fruit.name">
         <figure class="main__fruitImage">
           <img :src="`/img/images/${fruit.name}.png`" :alt="fruit.name">
         </figure>

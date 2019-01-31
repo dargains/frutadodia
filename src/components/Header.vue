@@ -22,6 +22,7 @@ export default {
     color: white;
     text-decoration: none;
     font-size: 14px;
+    font-family: 'Quicksand', sans-serif;
   }
 }
 </style>
