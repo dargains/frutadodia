@@ -83,32 +83,32 @@ export default {
     }
   }
   &__buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    button {
       display: flex;
       align-items: center;
       justify-content: center;
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      button {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          height: 80px;
-          color: white;
-          border: 0;
-          padding: 0;
-          img {
-              max-width: 40px;
-          }
-          &.back {
-              background-color: var(--red);
-              flex: 1;
-          }
-          &.submit {
-              background-color: var(--green);
-              flex: 2;
-          }
+      height: 80px;
+      color: white;
+      border: 0;
+      padding: 0;
+      img {
+        max-width: 40px;
       }
+      &.back {
+        background-color: var(--red);
+        flex: 1;
+      }
+      &.submit {
+        background-color: var(--green);
+        flex: 2;
+      }
+    }
   }
 }
 </style>

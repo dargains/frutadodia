@@ -58,11 +58,11 @@ export default {
     top: 50%;
     transform: translateY(-50%);
     text-align: left;
-    width: 150px;
+    width: 40%;
     line-height: 76px;
   }
   &__fruitImage {
-    // max-width: 300px;
+    max-width: 400px;
     width: 86%;
     margin: 0 auto;
   }
