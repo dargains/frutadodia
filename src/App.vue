@@ -1,6 +1,6 @@
 <template>
   <div>
-    <transition name="fade" v-if="allFetched">
+    <transition name="fade" v-if="!allFetched">
       <Loading/>
     </transition>
     <transition name="fade" v-else>
