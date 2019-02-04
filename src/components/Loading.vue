@@ -13,34 +13,15 @@
         <figure class="loading__box--orange">
           <img src="/img/icons/Laranja.svg" alt="">
         </figure>
-        <figure class="loading__box--chocolate">
-          <img src="/img/icons/Chocolates.svg" alt="">
-        </figure>
-        <figure class="loading__box--peach">
-          <img src="/img/icons/Pessego.svg" alt="">
-        </figure>
         <figure class="loading__box--pear">
           <img src="/img/icons/Pêra.svg" alt="">
         </figure>
-        <figure class="loading__box--grape">
-          <img src="/img/icons/Uvas.svg" alt="">
-        </figure>
-        <figure class="loading__box--cherry">
-          <img src="/img/icons/Cerejas.svg" alt="">
-        </figure>
-        <figure class="loading__box--banana">
-          <img src="/img/icons/Banana.svg" alt="">
-        </figure>
       </div>
+    </div>
+    <div class="loading__container">
       <div class="loading__loadingBox">
-        <figure class="loading__box--orange">
-          <img src="/img/icons/Laranja.svg" alt="">
-        </figure>
         <figure class="loading__box--strawberry">
           <img src="/img/icons/Morangos.svg" alt="">
-        </figure>
-        <figure class="loading__box--surprise">
-          <img src="/img/icons/Surpresa.svg" alt="">
         </figure>
         <figure class="loading__box--plum">
           <img src="/img/icons/Ameixa.svg" alt="">
@@ -48,17 +29,8 @@
         <figure class="loading__box--apple">
           <img src="/img/icons/Maçã.svg" alt="">
         </figure>
-        <figure class="loading__box--grape">
-          <img src="/img/icons/Uvas.svg" alt="">
-        </figure>
-        <figure class="loading__box--banana">
-          <img src="/img/icons/Banana.svg" alt="">
-        </figure>
-        <figure class="loading__box--chocolate">
-          <img src="/img/icons/Chocolates.svg" alt="">
-        </figure>
-        <figure class="loading__box--orange">
-          <img src="/img/icons/Laranja.svg" alt="">
+        <figure class="loading__box--cherry">
+          <img src="/img/icons/Cerejas.svg" alt="">
         </figure>
       </div>
     </div>
@@ -186,26 +158,24 @@ export default {
   &__container {
     margin: 0 auto;
     width: 150px;
-    height: 300px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    height: 150px;
+    top: 100px;
     overflow: hidden;
-    white-space:nowrap;
+    // white-space:nowrap;
+    &:nth-of-type(1) .loading__loadingBox {
+      animation: rotateT 1.5s infinite linear;
+    }
+    &:nth-of-type(2) .loading__loadingBox {
+      top: -150px;
+      animation: rotateB 2s infinite linear;
+    }
   }
   &__loadingBox {
-    width: 1350px;
-    height: 150px;
+    width: 300px;
+    height: 300px;
     margin: 0 auto;
     overflow: visible;
     font-size: 0;
-    &:nth-of-type(1) {
-      animation: rotate 1.8s infinite linear;
-    }
-    &:nth-of-type(2) {
-      animation: rotate 2s infinite linear;
-    }
   }
   &__box {
     width: 150px;
@@ -251,12 +221,38 @@ export default {
     }
   }
 }
-@keyframes rotate {
-  from {
-    transform: translateX(0);
+@keyframes rotateT {
+  0% {
+    transform: translate(0,0);
   }
-  to {
-    transform: translateX(calc(-100% + 150px));
+  25% {
+    transform: translate(-150px,0);
+  }
+  50% {
+    transform: translate(-150px,-150px);
+  }
+  75% {
+    transform: translate(0,-150px);
+  }
+  100% {
+    transform: translate(0,0);
+  }
+}
+@keyframes rotateB {
+  0% {
+    transform: translate(0,0);
+  }
+  25% {
+    transform: translate(0,150px);
+  }
+  50% {
+    transform: translate(-150px,150px);
+  }
+  75% {
+    transform: translate(-150px, 0);
+  }
+  100% {
+    transform: translate(0,0);
   }
 }
 </style>
