@@ -30,9 +30,8 @@ export default {
         this.$store.dispatch('getDays')
       ]).then(() => {
         this.$store.commit('allFetched');
-      }).catch(error => {
+      }).catch(() => {
         this.$store.commit('allFetched');
-        console.log(error);
       })
     })
   }

@@ -65,7 +65,7 @@ export default {
       font-size: 14px;
       position: absolute;
       left: 10px;
-      top: -10px;
+      top: -15px;
     }
     input {
       border: 0;

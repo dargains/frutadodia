@@ -1,12 +1,17 @@
 <template lang="html">
   <header class="header">
-    <router-link :to="{ name: 'admin', params: {} }">Fruta do dia</router-link>
+    <router-link :to="{ name: 'admin', params: {} }" :class="{striked:isChocolate}">Fruta do dia</router-link>
   </header>
 </template>
 
 <script>
 export default {
-  name: 'Header'
+  name: 'Header',
+  computed: {
+    isChocolate() {
+      return this.$store.state.fruitOfTheDay.length === 1 && this.$store.state.fruitOfTheDay.find(fruit => fruit.name === 'Chocolates');
+    }
+  }
 }
 </script>
 
@@ -18,6 +23,9 @@ export default {
   left: 30px;
   transform: rotate(90deg);
   transform-origin: left;
+  .striked {
+    text-decoration: line-through;
+  }
   a {
     color: white;
     text-decoration: none;

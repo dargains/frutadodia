@@ -1,4 +1,4 @@
-var cacheName = 'Fruta do Dia v1.0';
+var cacheName = 'Fruta do Dia v1.1';
 var filesToCache = [
   '/',
   'index.html',
