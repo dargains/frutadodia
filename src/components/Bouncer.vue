@@ -104,6 +104,7 @@ export default {
       padding: 0;
       margin: 0;
       -webkit-appearance: none;
+      cursor: pointer;
       img {
         max-width: 40px;
       }
