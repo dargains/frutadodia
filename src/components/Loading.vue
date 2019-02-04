@@ -163,11 +163,11 @@ export default {
     overflow: hidden;
     // white-space:nowrap;
     &:nth-of-type(1) .loading__loadingBox {
-      animation: rotateT 1.5s infinite linear;
+      animation: rotateT 3s infinite linear;
     }
     &:nth-of-type(2) .loading__loadingBox {
       top: -150px;
-      animation: rotateB 2s infinite linear;
+      animation: rotateB 3s infinite linear .33s;
     }
   }
   &__loadingBox {
@@ -225,16 +225,25 @@ export default {
   0% {
     transform: translate(0,0);
   }
+  12% {
+    transform: translate(-150px,0);
+  }
   25% {
     transform: translate(-150px,0);
+  }
+  37% {
+    transform: translate(-150px,-150px);
   }
   50% {
     transform: translate(-150px,-150px);
   }
+  62% {
+    transform: translate(0,-150px);
+  }
   75% {
     transform: translate(0,-150px);
   }
-  100% {
+  87% {
     transform: translate(0,0);
   }
 }
@@ -242,16 +251,25 @@ export default {
   0% {
     transform: translate(0,0);
   }
+  12% {
+    transform: translate(0,150px);
+  }
   25% {
     transform: translate(0,150px);
+  }
+  37% {
+    transform: translate(-150px,150px);
   }
   50% {
     transform: translate(-150px,150px);
   }
+  67% {
+    transform: translate(-150px, 0);
+  }
   75% {
     transform: translate(-150px, 0);
   }
-  100% {
+  87% {
     transform: translate(0,0);
   }
 }
