@@ -46,6 +46,8 @@ export default {
   justify-content: center;
   flex-direction: column;
   z-index: 1;
+  max-width: 800px;
+  margin: 0 auto;
   h2 {
     font-size: 90px;
     line-height: 0.8;

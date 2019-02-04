@@ -67,6 +67,8 @@ export default {
 <style lang="scss">
 .admin {
     height: auto;
+    max-width: 800px;
+    margin: 0 auto;
     &__list {
         display: flex;
         align-items: center;
@@ -104,7 +106,7 @@ export default {
         display: flex;
         align-items: center;
         justify-content: center;
-        position: fixed;
+        position: absolute;
         bottom: 0;
         width: 100%;
         button {

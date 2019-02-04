@@ -126,6 +126,8 @@ export default {
   width: 100%;
   text-align: center;
   z-index: 2;
+  max-width: 800px;
+  margin: 0 auto;
   &__date {
     font-family: 'Quicksand', sans-serif;
     display: inline-block;
@@ -184,7 +186,7 @@ export default {
     align-items: center;
     justify-content: center;
     img {
-      width: 80%;
+      width: 60%;
     }
     &--banana,
     &--pear {
