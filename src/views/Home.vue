@@ -75,7 +75,7 @@ export default {
     line-height: 83px;
     span {
       transform: translateX(300%);
-      display: inline-block;
+      display: block;
       @for $i from 1 through 4 {
         &:nth-of-type(#{$i}) {
           transition: all .8s cubic-bezier(0,.23,.18,1.08) #{($i*2)/10}s;

@@ -100,6 +100,7 @@ export default {
       color: white;
       border: 0;
       padding: 0;
+      margin: 0;
       -webkit-appearance: none;
       img {
         max-width: 40px;
