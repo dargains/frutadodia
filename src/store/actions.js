@@ -47,7 +47,10 @@ export default {
         let fruitOfTheDay = {};
         list.forEach(day => {
           const dayTime = toDateTime(day.data().day.seconds)
-          if (today.getTime() === dayTime.getTime()) fruitOfTheDay = day.data();
+          if (today.getTime() === dayTime.getTime()) {
+            state.dayId = day.id;
+            fruitOfTheDay = day.data();
+          }
         })
         if (!fruitOfTheDay.day) reject('nothing today');
         else {
@@ -94,10 +97,17 @@ export default {
       fruits
     }
     return new Promise(function(resolve, reject) {
-      state.database.collection("days").add(data).then(response => {
-        if (response.id) resolve();
-        else reject();
-      })
+      if (state.fruitOfTheDay.length) {
+        state.database.collection("days").doc(state.dayId).set(data)
+        .then(response => {
+          resolve();
+        });
+      } else {
+        state.database.collection("days").add(data).then(response => {
+          if (response.id) resolve();
+          else reject();
+        });
+      }
     });
   }
 }
