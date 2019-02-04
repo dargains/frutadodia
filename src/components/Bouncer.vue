@@ -1,5 +1,5 @@
 <template lang="html">
-  <section class="bouncer">
+  <section class="bouncer" ref="bouncer">
     <h2>Acesso restrito</h2>
     <p>Se não és a Gafanha baza daqui. As consequências de ficares são fatais.</p>
     <div class="bouncer__input" :class="{error}">
@@ -21,6 +21,9 @@ export default {
       password: '',
       error: false
     }
+  },
+  mounted() {
+    this.$refs.bouncer.style.height = window.innerHeight + 'px';
   },
   methods: {
     submit() {
@@ -86,7 +89,7 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
-    position: fixed;
+    position: absolute;
     bottom: 0;
     width: 100%;
     button {
@@ -97,6 +100,7 @@ export default {
       color: white;
       border: 0;
       padding: 0;
+      -webkit-appearance: none;
       img {
         max-width: 40px;
       }
