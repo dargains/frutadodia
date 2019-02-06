@@ -6,7 +6,6 @@
     <transition name="fade" v-else>
       <router-view />
     </transition>
-    <div id="asd"></div>
   </div>
 </template>
 

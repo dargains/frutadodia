@@ -141,7 +141,6 @@ export default {
     display: inline-block;
     width: 100%;
     z-index: 1;
-    top: 50px;
     span {
       position: absolute;
 
