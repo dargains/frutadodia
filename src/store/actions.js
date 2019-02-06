@@ -9,6 +9,11 @@ const toDateTime = secs => {
 	t.setSeconds(secs);
 	return t;
 }
+const addZero = i => i < 10 ? "0" + i : i;
+const getToday = () => {
+	let today = new Date();
+	return today.getFullYear() + addZero(today.getMonth()+1) + addZero(today.getDate())
+}
 
 const publicKey = 'BFEUjMFPhU-ALuhtgjSz2q7RNS-LyIFRDrgAuwkzQzB3BnJUW3LC6dcb8VrJ-QsVmOIii8tBCXUqXDtxD1Pg1NA';
 const privateKey = 'Qj7hJh0Kz0Sxs1_rVf-yVwbEjAC03FBiJmuAijHsC0Y';
@@ -49,26 +54,16 @@ export default {
 	},
 	getDays({state,commit}) {
 		return new Promise((resolve, reject) => {
-			state.database.collection('days').get().then(list => {
-				const today = new Date();
-				today.setHours(0, 0, 0, 0);
-				let fruitOfTheDay = {};
-				list.forEach(day => {
-					const dayTime = toDateTime(day.data().day.seconds)
-					if (today.getTime() === dayTime.getTime()) {
-						state.dayId = day.id;
-						fruitOfTheDay = day.data();
-					}
-				})
-				if (!fruitOfTheDay.day) reject('nothing today');
-				else {
-					const days = [];
-					list.forEach(item => {
-						days.push(item.data());
-					});
-					commit('writeFruitOfTheDay', fruitOfTheDay.fruits);
+			state.database.collection('days').doc(getToday()).get().then(doc => {
+				if(doc.exists) {
+					commit('writeFruitOfTheDay', doc.data().fruits);
 					resolve();
+				} else {
+					reject('nothing today');
 				}
+			})
+			.catch(() => {
+
 			})
 		});
 	},
@@ -87,20 +82,11 @@ export default {
 			fruits
 		}
 		return new Promise((resolve, reject) => {
-			if (state.fruitOfTheDay.length) {
-				state.database.collection("days").doc(state.dayId).set(data)
-					.then(() => {
-						dispatch('sendMessage', fruits);
-						resolve();
-					});
-			} else {
-				state.database.collection("days").add(data).then(response => {
-					if (response.id) {
-						dispatch('sendMessage', fruits);
-						resolve();
-					} else reject();
-				});
-			}
+			state.database.collection('days').doc(getToday()).set(data)
+			.then(() => {
+					dispatch('sendMessage', fruits);
+					resolve();
+			});
 		});
 	},
 	sendMessage({state}, fruits) {
