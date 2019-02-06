@@ -10,36 +10,36 @@
 import Header from '../components/Header';
 
 export default {
-  name: 'Empty',
-  components: {
-    Header
-  }
+	name: 'Empty',
+	components: {
+		Header
+	}
 }
 </script>
 
 <style lang="scss">
 .empty {
-  height: 100vh;
-  background-color: var(--red);
-  color: var(--white);
-  padding: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  h2 {
-    font-size: 90px;
-    line-height: 0.63;
-    padding: 0 0 60px;
-    letter-spacing: 4.5px;
-  }
-  p {
-    font-size: 16px;
-    font-family: 'Quicksand', sans-serif;
-    font-weight: 700;
-    margin-left: 50px;
-    letter-spacing: 1px;
-    line-height: 1.2;
-  }
+    height: 100vh;
+    background-color: var(--red);
+    color: var(--white);
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    h2 {
+        font-size: 90px;
+        line-height: 0.63;
+        padding: 0 0 60px;
+        letter-spacing: 4.5px;
+    }
+    p {
+        font-size: 16px;
+        font-family: 'Quicksand', sans-serif;
+        font-weight: 700;
+        margin-left: 50px;
+        letter-spacing: 1px;
+        line-height: 1.2;
+    }
 }
 </style>

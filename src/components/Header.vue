@@ -6,12 +6,12 @@
 
 <script>
 export default {
-  name: 'Header',
-  computed: {
-    isChocolate() {
-      return this.$store.state.fruitOfTheDay.length === 1 && this.$store.state.fruitOfTheDay.find(fruit => fruit.name === 'Chocolates');
-    }
-  }
+	name: 'Header',
+	computed: {
+		isChocolate() {
+			return this.$store.state.fruitOfTheDay.length === 1 && this.$store.state.fruitOfTheDay.find(fruit => fruit.name === 'Chocolates');
+		}
+	}
 }
 </script>
 
@@ -31,6 +31,7 @@ export default {
     text-decoration: none;
     font-size: 14px;
     font-family: 'Quicksand', sans-serif;
+    padding: 10px;
   }
 }
 </style>

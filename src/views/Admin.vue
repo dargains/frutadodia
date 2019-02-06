@@ -1,6 +1,6 @@
 <template>
 <section class="admin">
-  <Bouncer v-if="!logged"/>
+  <Bouncer v-if="!logged" />
   <div class="admin__main" v-else>
     <ul class="admin__list">
       <li class="admin__item" v-for="fruit in fruits" :key="fruit.name">
@@ -28,39 +28,39 @@
 import Bouncer from '../components/Bouncer';
 
 export default {
-  name: 'Admin',
-  components: {
-    Bouncer
-  },
-  data() {
-    return {
-      list: []
-    }
-  },
-  computed: {
-    fruits() {
-      return this.$store.state.fruits;
-    },
-    logged() {
-      return this.$store.state.logged;
-    }
-  },
-  methods: {
-    submit() {
-      this.$store.dispatch('submitFruit', this.list).then(() => {
-        alert('Fruta do Dia submetida!');
-        this.$router.push('/');
-      });
-    },
-    toggleFruit(event) {
-      const isChecking = !event.currentTarget.previousElementSibling.checked;
-      const selectedFruit = event.currentTarget.getAttribute('for');
-      if (isChecking) {
-        if (this.list.length === 2) event.preventDefault();
-        else this.list.push(selectedFruit);
-      } else this.list.splice(this.list.indexOf(selectedFruit), 1);
-    }
-  }
+	name: 'Admin',
+	components: {
+		Bouncer
+	},
+	data() {
+		return {
+			list: []
+		}
+	},
+	computed: {
+		fruits() {
+			return this.$store.state.fruits;
+		},
+		logged() {
+			return this.$store.state.logged;
+		}
+	},
+	methods: {
+		submit() {
+			this.$store.dispatch('submitFruit', this.list).then(() => {
+				console.log('Fruta do Dia submetida!');
+				this.$router.push('/');
+			});
+		},
+		toggleFruit(event) {
+			const isChecking = !event.currentTarget.previousElementSibling.checked;
+			const selectedFruit = event.currentTarget.getAttribute('for');
+			if (isChecking) {
+				if (this.list.length === 2) event.preventDefault();
+				else this.list.push(selectedFruit);
+			} else this.list.splice(this.list.indexOf(selectedFruit), 1);
+		}
+	}
 }
 </script>
 
@@ -136,10 +136,10 @@ export default {
 }
 .toggle {
     label {
-        width: 47px;
-        height: 27px;
-        border-radius: 14px;
-        background-color: lightgrey;
+        width: 60px;
+        height: 32px;
+        border-radius: 16px;
+        background-color: var(--gray);
         display: inline-block;
         vertical-align: middle;
         margin-left: 5px;
@@ -150,11 +150,11 @@ export default {
             content: '';
             display: block;
             position: absolute;
-            top: 3px;
-            left: 3px;
-            width: 21px;
-            height: 21px;
-            border-radius: 12px;
+            top: 2px;
+            left: 2px;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
             background-color: white;
             box-shadow: 0 2px 4px 0 rgba(gray, 0.35);
             transition: left 0.1s ease-in;
@@ -163,7 +163,7 @@ export default {
     input:checked ~ label {
         background-color: var(--green);
         &:after {
-            left: 23px;
+            left: 30px;
         }
     }
     input {

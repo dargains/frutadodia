@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "fruta-do-dia",
+  "private_key_id": "31e175e1072e1c2c94e42e86c19aadc6355b87d0",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCa+2ti8TKq5NBP\nhC0skeBKQvS1bLUUB0of6w40OxCHqHtMGJoFzYodGwr/83HRfjhQ47FHnimZUdDb\nTdzHBJNWyv+BEi8BtGqQlHczTHDT5YWKBIx59YFbsiQOBJgX1fw7x2J0SXxWLTHE\ngL8TJymcm+xoCDhxVRBZWgX/NGbBuIdvVDLborKykI+mxpgoA89BvsH1IzwCF04K\nCrSTMRyZndLZ5TaWvnL4A4jC0kyQ+K0LERr+mGTVjdnyWBHfPCNmDHxV+fcH3WKd\nWJ2VKenYNvfyCg92gXbE+IymhMOhM9Valj/XO1uvNOMEUhMmC9OvYmWM5+IkHVId\ngW+Z2fXlAgMBAAECggEABmf4X6BEMNbhITqy4+0XHHXpjkFABLCrclsBnPLIqchy\n6XZf3kSjETWftGygUQfawiwACGUqTe1yyMnbMFL8V+6JD3fMTFGXXdwN+rRN1Dhs\n/WnXa6ghMKre1vR+9YdErcZ9uskZ0/V6YYEhd/3a3rlKofjRanMMO4FFqHxtESDj\n8BrYKhRAuTi9lslAuB6TStcROdHgaNlkAEHuG897JgQL+AvtTIdU9VGwxVN3Nl2C\nG6G7CbNb0nFGpISzchf7HHyuNas88dWRLckAk8D4doyHUHi2+gGBAon0ZsZLkoX8\nmr/6r/O+Wq+Kjl6sqQWID9+jqis8bVznL4L+6xAhYQKBgQDa0Dvh9IlobkozEpWa\nSlSDabTVUTvnVetNstMriCvSlh9wub6C2iUKtQWfSQDYI96cvYJb1H8oeFZ1hHq/\nWBwZ1Gu+oYhcFdFd9HXc75kWDvcS+BrJh8qFfF4Y0jg3EFKtnVpHa1Ffc6Wfzb61\nvTYPhqgQvLmLJ0x8znehQGQRxQKBgQC1Uh7TSzPh8bF+CN0gMQkfpOEi0IIVbzRF\nK8uVrJAGqG/pbcel64kG02UjE+UR1temiHTvvqfFNjOb4hogyZXooO7mG+sg1Uxn\n1YtT9b22xIBtpPrP3qa0pblKCuvWI2wWuuzcEDnFuKzmJaIjKfHsrk5BdWEN7ugw\nfyL6exk1oQKBgEvmgW8ekO9dmnVe0/ACKpCvASAhnoLfRdDc3+0wveq9Ukia1Z+0\nJbcyFbIr85QF1TlPb0GFU1ppa6w1+RIYcR7wlTM5+v/ePZK2so+huNty83dsAna3\nmKN3AXjgqslG6zb35xHxAvf2OJRXHPkTmgYGspOjs0S2rAx63fpcSJn1AoGBAIAv\nulMui1NlB1JO+eVURVr1uaRfPFfi8lUkjR0Xjgrm8ZdZYRfP2GPW911BJ2ThOjwl\npGYJp5ooo3vE8SvU2AJKJBrSCfyATy/pLEMDLEgVy6W4SQjEI576um+6INiW2keH\nhwRdBDrgQHvEh0fM05e78t8cGK09BTGj8BqdBEmBAoGBAK7KSTmkR5+r2rWRkRNm\nMQXNjJFlnm5oABivSVUHlV7E7y9Zk664xa0CU7nlc1IBeBNoEdhSOTVNKnKv4y32\nYQoUSOxOq6GqazCJjxXhT6c+4BqrbqKvNdmOh90tHfFGc2LMAlBF+uKDgglW0Tdf\ncq6yUMtmSme3493e64yF/AQY\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-jx5ag@fruta-do-dia.iam.gserviceaccount.com",
+  "client_id": "102751470561324155315",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-jx5ag%40fruta-do-dia.iam.gserviceaccount.com"
+}

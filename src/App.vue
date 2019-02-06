@@ -6,35 +6,36 @@
     <transition name="fade" v-else>
       <router-view />
     </transition>
+    <div id="asd"></div>
   </div>
 </template>
 
 <script>
 import Loading from './components/Loading';
 export default {
-  name: 'App',
-  components: {
-    Loading
-  },
-  computed: {
-    allFetched() {
-      return this.$store.state.allFetched;
-    }
-  },
-  created() {
-    this.$store.dispatch('connectToDatabase')
-    .then(() => {
-      Promise.all([
-        this.$store.dispatch('connectToStorage'),
-        this.$store.dispatch('getFruits'),
-        this.$store.dispatch('getDays')
-      ]).then(() => {
-        this.$store.commit('allFetched');
-      }).catch(() => {
-        this.$store.commit('allFetched');
-      })
-    })
-  }
+	name: 'App',
+	components: {
+		Loading
+	},
+	computed: {
+		allFetched() {
+			return this.$store.state.allFetched;
+		}
+	},
+	created() {
+		this.$store.dispatch('connectToDatabase')
+			.then(() => {
+				Promise.all([
+					this.$store.dispatch('connectToStorage'),
+					this.$store.dispatch('getFruits'),
+					this.$store.dispatch('getDays')
+				]).then(() => {
+					this.$store.commit('allFetched');
+				}).catch(() => {
+					this.$store.commit('allFetched');
+				})
+			})
+	}
 }
 </script>
 <style>
@@ -42,6 +43,7 @@ export default {
   --green: #36d174;
   --red: #ef5350;
   --white: #ffffff;
+  --gray: #e5e5e5;
   --black: #363d46;
 }
 body {
