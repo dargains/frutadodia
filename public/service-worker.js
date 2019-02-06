@@ -86,8 +86,6 @@ self.addEventListener('fetch', function(e) {
   );
 });
 self.addEventListener('push', function(event) {
-  console.log('[Service Worker] Push Received.');
-
   const title = 'Fruta do dia';
   const options = {
     body: event.data.text(),
@@ -98,10 +96,7 @@ self.addEventListener('push', function(event) {
   event.waitUntil(self.registration.showNotification(title, options));
 });
 self.addEventListener('notificationclick', function(event) {
-  console.log('[Service Worker] Notification click Received.');
-
   event.notification.close();
-
   event.waitUntil(
     clients.openWindow('https://frutadodia.azurewebsites.net')
   );

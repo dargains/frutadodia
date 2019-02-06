@@ -16,11 +16,15 @@ new Vue({
 }).$mount('#FDD')
 
 
+const applicationServerPublicKey = 'BFEUjMFPhU-ALuhtgjSz2q7RNS-LyIFRDrgAuwkzQzB3BnJUW3LC6dcb8VrJ-QsVmOIii8tBCXUqXDtxD1Pg1NA';
+let isSubscribed = false;
+let swRegistration = null;
+
 const urlB64ToUint8Array = (base64String) => {
   const padding = '='.repeat((4 - base64String.length % 4) % 4);
   const base64 = (base64String + padding)
-    .replace(/\-/g, '+')
-    .replace(/_/g, '/');
+  .replace(/\-/g, '+')
+  .replace(/_/g, '/');
 
   const rawData = window.atob(base64);
   const outputArray = new Uint8Array(rawData.length);
@@ -31,17 +35,6 @@ const urlB64ToUint8Array = (base64String) => {
   return outputArray;
 }
 
-const applicationServerPublicKey = 'BFEUjMFPhU-ALuhtgjSz2q7RNS-LyIFRDrgAuwkzQzB3BnJUW3LC6dcb8VrJ-QsVmOIii8tBCXUqXDtxD1Pg1NA';
-let isSubscribed = false;
-let swRegistration = null;
-
-const updateSBS = () => {
-  if (Notification.permission === 'denied') {
-    updateSubscriptionOnServer(null);
-    return;
-  }
-}
-
 const init = () => {
   const applicationServerKey = urlB64ToUint8Array(applicationServerPublicKey);
   swRegistration.pushManager.subscribe({
@@ -50,24 +43,12 @@ const init = () => {
     })
     .then(function(subscription) {
       console.log('User is subscribed.');
-
-      updateSubscriptionOnServer(subscription);
-
+      store.dispatch('registerUser', JSON.stringify(subscription));
       isSubscribed = true;
-
-      updateSBS();
     })
     .catch(function(err) {
       console.log('Failed to subscribe the user: ', err);
-      updateSBS();
     });
-}
-
-const updateSubscriptionOnServer = subscription => {
-  if (subscription) {
-    // document.querySelector('#asd').textContent = JSON.stringify(subscription);
-    store.dispatch('registerUser', JSON.stringify(subscription));
-  }
 }
 
 if ('serviceWorker' in navigator) {
@@ -75,20 +56,11 @@ if ('serviceWorker' in navigator) {
     .register('service-worker.js')
     .then(function(swReg) {
       console.log('Fruta do Dia Service Worker v1.5 Registered');
-      // firebase.messaging().useServiceWorker(swReg);
       swRegistration = swReg;
       swRegistration.pushManager.getSubscription()
         .then(function(subscription) {
           isSubscribed = !(subscription === null);
-          // updateSubscriptionOnServer(subscription);
-
-          if (isSubscribed) {
-            console.log('User IS subscribed.');
-          } else {
-            console.log('User is NOT subscribed.');
-            init();
-          }
-
+          if (!isSubscribed) init();
         });
     });
 }
