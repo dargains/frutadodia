@@ -55,7 +55,7 @@ if ('serviceWorker' in navigator) {
   navigator.serviceWorker
     .register('service-worker.js')
     .then(function(swReg) {
-      console.log('Fruta do Dia Service Worker v1.5 Registered');
+      console.log('Fruta do Dia Service Worker v1.6 Registered');
       swRegistration = swReg;
       swRegistration.pushManager.getSubscription()
         .then(function(subscription) {
