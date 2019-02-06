@@ -91,8 +91,8 @@ self.addEventListener('push', function(event) {
   const title = 'Fruta do dia';
   const options = {
     body: event.data.text(),
-    icon: 'images/icon.png',
-    badge: 'images/badge.png'
+    icon: '/icons/128x128.png',
+    badge: '/img/icons/Uvas.svg'
   };
 
   event.waitUntil(self.registration.showNotification(title, options));
