@@ -86,9 +86,9 @@ if ('serviceWorker' in navigator) {
             console.log('User IS subscribed.');
           } else {
             console.log('User is NOT subscribed.');
+            init();
           }
 
-          init();
         });
     });
 }
