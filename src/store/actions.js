@@ -90,7 +90,7 @@ export default {
 		});
 	},
 	sendMessage({state}, fruits) {
-		const payload = fruits.length === 1 ? `A fruta do dia é ${fruits[0]}!` : `As frutas do dia são ${fruits[0]} e ${fruits[1]}!`
+		const payload = fruits.length === 1 ? `A fruta do dia é ${fruits[0]}` : `As frutas do dia são ${fruits[0]} e ${fruits[1]}`
 
 		state.database.collection('subscriptions').get().then(list => {
 			list.forEach(item => {

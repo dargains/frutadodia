@@ -2,8 +2,8 @@
 <section class="admin">
   <Bouncer v-if="!logged" />
   <article class="admin__success" v-else-if="showSuccess">
-    <h2>Fruta submetida!</h2>
-    <p>As notificações já foram enviadas!</p>
+    <h2>Já foi!</h2>
+    <p>Agora é vê-los a correr para a copa, as notificações já foram enviadas.</p>
     <figure @click="$router.go('/')">
       <img src="../assets/positive.svg" alt="">
     </figure>
@@ -55,6 +55,7 @@ export default {
 	},
 	methods: {
 		submit() {
+      if (!this.list.length) return;
 			this.$store.dispatch('submitFruit', this.list).then(() => {
 				console.log('Fruta do Dia submetida!');
         this.showSuccess = true;
@@ -161,6 +162,7 @@ export default {
       line-height: 0.8;
       margin: 0 0 60px;
       letter-spacing: 4.5px;
+      width: 100%;
     }
     p {
       font-size: 16px;
@@ -168,11 +170,14 @@ export default {
       font-weight: 700;
       letter-spacing: 1px;
       line-height: 1.2;
+      margin-left: 50px;
     }
     figure {
       margin: 40px auto;
       max-width: 50px;
       cursor: pointer;
+      position: absolute;
+      bottom: 20px;
     }
   }
 }

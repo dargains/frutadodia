@@ -90,25 +90,25 @@ export default {
 			}
 			let week = '';
 			switch (weekN) {
-			case (0):
+			case (1):
 				week = 'Segunda-feira';
 				break;
-			case (1):
+			case (2):
 				week = 'Terça-feira';
 				break;
-			case (2):
+			case (3):
 				week = 'Quarta-feira';
 				break;
-			case (3):
+			case (4):
 				week = 'Quinta-feira';
 				break;
-			case (4):
+			case (5):
 				week = 'Sexta-feira';
 				break;
-			case (5):
+			case (6):
 				week = 'Sábado';
 				break;
-			case (6):
+			case (7):
 				week = 'Domingo';
 				break;
 			}

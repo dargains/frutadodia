@@ -1,7 +1,7 @@
 <template lang="html">
   <section class="bouncer" ref="bouncer">
-    <h2>Acesso restrito</h2>
-    <p>Se não és a Gafanha baza daqui. As consequências de ficares são fatais.</p>
+    <h2>Nota</h2>
+    <p>Se não és a Gafanha baza, as consequências de ficares são fatais.</p>
     <div class="bouncer__input" :class="{error}">
       <label for="password">Password</label>
       <input type="password" id="password" v-model="password" @click="error = false" @keyup.enter="submit">
@@ -53,6 +53,7 @@ export default {
         line-height: 0.8;
         margin: 0 0 60px;
         letter-spacing: 4.5px;
+        width: 100%;
     }
     p {
         font-size: 16px;
