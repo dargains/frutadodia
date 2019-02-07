@@ -1,4 +1,4 @@
-var cacheName = 'Fruta do Dia v1.6';
+var cacheName = 'Fruta do Dia v1.10';
 var filesToCache = [
   '/',
   'index.html',
@@ -89,12 +89,13 @@ self.addEventListener('push', function(event) {
   const title = 'Fruta do dia';
   const options = {
     body: event.data.text(),
-    icon: '/icons/128x128.png',
+    icon: '/icons/256x256.png',
     badge: '/icons/badge.png'
   };
 
   event.waitUntil(self.registration.showNotification(title, options));
 });
+
 self.addEventListener('notificationclick', function(event) {
   event.notification.close();
   event.waitUntil(
