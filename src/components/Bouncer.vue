@@ -28,7 +28,7 @@ export default {
 	methods: {
 		submit() {
 			this.error = false;
-			if (this.password === 'Gafanha') this.$store.commit('login');
+			if (this.password === 'de borla') this.$store.commit('login');
 			else this.error = true;
 		}
 	}

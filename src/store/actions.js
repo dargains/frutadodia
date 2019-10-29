@@ -12,7 +12,7 @@ const toDateTime = secs => {
 const addZero = i => i < 10 ? "0" + i : i;
 const getToday = () => {
 	let today = new Date();
-	return today.getFullYear() + addZero(today.getMonth()+1) + addZero(today.getDate())
+	return JSON.stringify(today.getFullYear()) + addZero(today.getMonth()+1) + addZero(today.getDate())
 }
 
 const publicKey = 'BFEUjMFPhU-ALuhtgjSz2q7RNS-LyIFRDrgAuwkzQzB3BnJUW3LC6dcb8VrJ-QsVmOIii8tBCXUqXDtxD1Pg1NA';
@@ -96,22 +96,23 @@ export default {
 			list.forEach(item => {
 				const pushSubscription = JSON.parse(item.data().token);
 
-				fetch('https://cors-anywhere.herokuapp.com/https://web-push-codelab.glitch.me/api/send-push-msg', {
+				fetch('https://requestproxyfullsix.azurewebsites.net/api/HttpTrigger1?code=zG9x8Ma/JdVGnpBrlJva7oyyOlQFlDO9OkPfdI3pbq7VtlhVyV4/QQ==', {
 					method: 'post',
 					headers: {
 						'content-type': 'application/json'
 					},
 					body: JSON.stringify({
-						applicationKeys: {
-							public: publicKey,
-							private: privateKey
-						},
-						data: payload,
-						subscription: pushSubscription
+            URL: 'https://web-push-codelab.glitch.me/api/send-push-msg',
+						Message: {
+              applicationKeys: {
+                public: publicKey,
+                private: privateKey
+              },
+              data: payload,
+              subscription: pushSubscription
+            }
 					})
-				}).then(response => {
-						// console.log(response);
-					})
+				})
 			});
 		});
 
